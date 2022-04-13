@@ -1,67 +1,51 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
+/* import * as React from 'react';
+import Typography from '@mui/material/Typography'; */
+import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import ProTip from '../src/ProTip';
+/* import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
 import { boxSizing, height } from '@mui/system';
-
+ */
 const Search = () => (
-  <Box component="form" sx={{
-    width: "60%",
-    height: 1,
-    display: "flex",
-    justifyContent: "end",
-    alignItems: "center",
-    p: 2
-  }}>
-    <Box className='search' component='input' sx={{
-      width: [1 / 1, 1 / 2, 1 / 2],
-      height: 0.3,
-      border: 'none',
-      borderRadius: '10px',
-      bgcolor: 'secondary.main',
-      display: 'flex',
-    }} >
-
-    </Box>
-  </Box >
+  <Box className='search' component='input' sx={{
+    height: "40px",
+    flexGrow: "1",
+    maxWidth: '300px',
+    minWidth: '1px',
+    border: 'none',
+    borderRadius: '10px',
+    bgcolor: 'secondary.main',
+    justifySelf: 'end',
+  }} >
+  </Box>
 )
-const Ball = ({ color, children }) => (
+const Ball = ({ color }) => (
   <Box sx={{
     bgcolor: color,
-    width: 25,
-    height: 25,
-    borderRadius: '50%',
+    minWidth: '1px',
+    minHeight: '1px',
+    height: '25px',
+    width: '25px',
+    borderRadius: '100%',
     border: '3px solid white',
+    mx: 0.5,
     alignSelf: 'start',
-    m: 0.25
-  }}>
-    {children}
-  </Box>
+  }} />
 )
 const BlueBall = () => (
   <Box sx={{
     bgcolor: "green",
-    width: 70,
-    height: 70,
+    minWidth: "1px",
+    minHeight: "1px",
+    maxWidth: "60px",
+    maxHeight: "60px",
+    height: "60px",
+    width: "60px",
     borderRadius: '50%',
     border: '3px solid white',
-    justifySelf: 'center',
-    alignSelf: 'center',
-    m: 0.25
   }}>
-    -
 
-  </Box>
-)
-const Balls = ({ children }) => (
-  <Box sx={{
-    display: "flex",
-    justifyContent: "start",
-    alignItems: "start",
-  }}>
-    {children}
   </Box>
 )
 
@@ -69,30 +53,48 @@ const Header = ({ children }) => (
   <Box sx={{
     bgcolor: 'secondary.light',
     width: 1,
-    height: '18vh',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    px: 1.5
+    p: "20px"
   }}>
-    <Balls>
+
+    <Box sx={{ display: 'flex', flexGrow: 3 }}>
       <BlueBall />
       <Ball color="primary.main" />
       <Ball color="secondary.main" />
       <Ball color="error.main" />
-    </Balls>
+    </Box>
     <Search />
-    {/*     <Balls />
-    <Search /> */}
+
     {children}
   </Box>
 )
 
-const Display = ({ children }) => (
+const Pokebox = ({ id }) => (
+  <Box sx={{
+    bgcolor: 'secondary.light',
+    width: 1,
+    display: 'flex',
+    alignItems: 'center',
+    p: "20px",
+    mt: "10px",
+    flexGrow: 1,
+    alignSelf: 'start',
+  }} >
+    <Typography variant='h4'>
+      Pokemon {id}
+    </Typography>
+  </Box>
+)
+const Content = ({ children }) => (
   <Box sx={{
     bgcolor: 'secondary.main',
     width: 1,
-    height: '64vh',
+    flexGrow: 1,
+    px: 3,
+    py: 3,
+    display: 'flex',
+    flexFlow: 'column wrap',
   }}>
     {children}
   </Box>
@@ -101,10 +103,9 @@ const Footer = ({ children }) => (
   <Box sx={{
     bgcolor: 'secondary.light',
     width: 1,
-    height: '18vh',
-    position: 'absolute',
-    bottom: 0,
+    height: '100px',
   }}>
+
     {children}
   </Box>
 )
@@ -112,6 +113,8 @@ const Footer = ({ children }) => (
 const Screen = ({ children }) => (
   < Box sx={{
     bgcolor: 'primary.light',
+    display: 'flex',
+    flexFlow: 'column wrap',
     height: '100vh',
   }}>
     {children}
@@ -120,17 +123,45 @@ const Screen = ({ children }) => (
 
 const Index = () => (
   <Screen>
-    <Header>
+    <Header />
 
-    </Header>
-    <Display>
+    <Content>
+      <Typography variant='h3' component='div' sx={{
+        fontFamily: 'Varela Round',
+        fontSize: '3rem',
+      }}>
+        Pokedex
+      </Typography>
 
-    </Display>
+      <Typography variant='subtitle1' component='div' sx={{
+        fontFamily: 'Varela Round',
+        fontSize: '1.0rem',
+      }}>
+        Procure pelo Pokemon
+        desejado por nome ou id.
+      </Typography>
+      <Box sx={{
+        display: 'flex',
+        flexFlow: 'column wrap',
+        justifyContent: 'space-around',
+        flexGrow: 1,
+      }}>
+        <Pokebox id={1} />
+        <Pokebox id={2} />
+        <Pokebox id={3} />
+      </Box>
 
-    <Footer>
+    </Content>
 
-    </Footer>
-    {/*       <Typography variant="h4" component="h1" gutterBottom>
+    <Footer />
+
+  </Screen >
+);
+
+
+export default Index
+
+{/*       <Typography variant="h4" component="h1" gutterBottom>
         Next.js example
       </Typography>
       <Link href="/about" color="secondary">
@@ -138,8 +169,6 @@ const Index = () => (
       </Link>
       <ProTip />
       <Copyright /> */}
-  </Screen >
-);
 
-
-export default Index
+{/*     <Balls />
+    <Search /> */}
