@@ -15,7 +15,7 @@ const Search = () => (
     minWidth: '1px',
     border: 'none',
     borderRadius: '10px',
-    bgcolor: 'secondary.main',
+    bgcolor: 'red.navsearchbg',
     justifySelf: 'end',
   }} >
   </Box>
@@ -35,7 +35,7 @@ const Ball = ({ color }) => (
 )
 const BlueBall = () => (
   <Box sx={{
-    bgcolor: "green",
+    bgcolor: "blue.ball",
     minWidth: "1px",
     minHeight: "1px",
     maxWidth: "60px",
@@ -51,18 +51,19 @@ const BlueBall = () => (
 
 const Header = ({ children }) => (
   <Box sx={{
-    bgcolor: 'secondary.light',
+    bgcolor: 'red.nav',
     width: 1,
     display: 'flex',
     alignItems: 'center',
-    p: "20px"
+    px: "20px",
+    py: "30px"
   }}>
 
     <Box sx={{ display: 'flex', flexGrow: 3 }}>
       <BlueBall />
-      <Ball color="primary.main" />
-      <Ball color="secondary.main" />
-      <Ball color="error.main" />
+      <Ball color="red.ball" />
+      <Ball color="yellow.ball" />
+      <Ball color="green.ball" />
     </Box>
     <Search />
 
@@ -74,21 +75,23 @@ const Pokebox = ({ id }) => (
   <Box sx={{
     bgcolor: 'secondary.light',
     width: 1,
+    maxHeight: '150px',
     display: 'flex',
     alignItems: 'center',
-    p: "20px",
-    mt: "10px",
+    p: 2,
+    mt: 1,
     flexGrow: 1,
     alignSelf: 'start',
+    borderRadius: "10px"
   }} >
-    <Typography variant='h4'>
+    <Typography variant='h6' sx={{ display: "flex" }}>
       Pokemon {id}
     </Typography>
   </Box>
 )
 const Content = ({ children }) => (
   <Box sx={{
-    bgcolor: 'secondary.main',
+    bgcolor: 'white.main',
     width: 1,
     flexGrow: 1,
     px: 3,
@@ -101,9 +104,10 @@ const Content = ({ children }) => (
 )
 const Footer = ({ children }) => (
   <Box sx={{
-    bgcolor: 'secondary.light',
+    bgcolor: 'red.footer',
     width: 1,
-    height: '100px',
+    height: '120px',
+    display: 'flex',
   }}>
 
     {children}
@@ -112,7 +116,6 @@ const Footer = ({ children }) => (
 
 const Screen = ({ children }) => (
   < Box sx={{
-    bgcolor: 'primary.light',
     display: 'flex',
     flexFlow: 'column wrap',
     height: '100vh',
