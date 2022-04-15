@@ -64,8 +64,7 @@ const Header = ({ children }) => (
     width: 1,
     display: 'flex',
     alignItems: 'center',
-    px: "20px",
-    py: "30px",
+    p: 3,
     justifyContent: 'space-between',
   }}>
     <Box sx={{ display: 'flex', flexGrow: 3, mr: 1 }}>
@@ -85,16 +84,14 @@ const Pokebox = ({ pokemon }) => {
     < Box sx={{
       bgcolor: 'electric',
       width: 1,
-      maxHeight: '110px',
-      height: '110px',
-      minHeight: '1px',
+      maxHeight: '150px',
+      flexGrow: 1,
       display: 'flex',
       p: 1,
-      mt: 1,
-      flexGrow: 1,
       alignSelf: 'start',
       borderRadius: "10px",
       flexFlow: 'row wrap',
+      my: 2
     }} >
       <Box component='span' sx={{
         height: 1,
@@ -104,12 +101,10 @@ const Pokebox = ({ pokemon }) => {
         flexGrow: 1,
         alignSelf: 'start',
         borderRadius: "10px",
-
       }}>
         <Typography variant="subtitle1">#{id} </Typography>
         <Typography variant="h5" sx={{ fontSize: '1.4rem', fontFamily: 'Varela Round', fontWeight: "bold" }}>{name} <br /></Typography>
         <Typography sx={{ fontSize: '0.9rem', }}>{types.map(type => type).join(', ')}<br /></Typography>
-
       </Box>
     </Box >
   )
@@ -118,10 +113,8 @@ const Content = ({ children }) => (
   <Box sx={{
     bgcolor: 'white',
     width: 1,
-
     flexGrow: 1,
-
-    p: 3,
+    p: [1, 2, 3],
     display: 'flex',
     flexFlow: 'column nowrap',
   }}>
@@ -157,27 +150,38 @@ const Index = () => (
     <Header />
 
     <Content>
-      <Typography variant='h3' component='div' sx={{
-        fontFamily: 'Varela Round',
-        fontSize: '3rem',
-        fontWeight: 'bold',
+      <Box sx={{
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        width: 0.6,
+        border: 'none',
+        borderRadius: '10px',
+        flexGrow: 1,
+        maxHeight: "100px",
+        justifyContent: 'center',
+        my: 1
       }}>
-        Pokedex
-      </Typography>
+        <Typography variant='h3' component='div' sx={{
+          fontFamily: 'Varela Round',
+          fontSize: '2.5rem',
+          fontWeight: 'bold',
+        }}>
+          Pokedex
+        </Typography>
 
-      <Typography variant='subtitle1' component='div' sx={{
-        fontFamily: 'Varela Round',
-        fontSize: '1.0rem',
-      }}>
-        Procure pelo Pokemon
-        desejado por nome ou id.
-      </Typography>
+        <Typography variant='subtitle1' component='div' sx={{
+          fontFamily: 'Varela Round',
+          fontSize: '1.0rem',
+        }}>
+          Procure pelo Pokemon
+          desejado por nome ou id.
+        </Typography>
+      </Box>
       <Box sx={{
         display: 'flex',
         flexFlow: 'column wrap',
         justifyContent: 'space-around',
         flexGrow: 1,
-        my: 3
       }}>
         <Pokebox pokemon={pikachu} />
         <Pokebox pokemon={pikachu} />
