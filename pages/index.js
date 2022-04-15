@@ -1,5 +1,6 @@
 /* import * as React from 'react';
 import Typography from '@mui/material/Typography'; */
+import { BorderAllRounded } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 /* import ProTip from '../src/ProTip';
@@ -153,7 +154,7 @@ const Index = () => (
       <Box sx={{
         display: 'flex',
         flexFlow: 'column nowrap',
-        width: 0.6,
+        width: "300px",
         border: 'none',
         borderRadius: '10px',
         flexGrow: 1,
@@ -165,8 +166,12 @@ const Index = () => (
           fontFamily: 'Varela Round',
           fontSize: '2.5rem',
           fontWeight: 'bold',
+          width: 'auto',
         }}>
           Pokedex
+          <Box sx={{ width: 1, bgcolor: 'blue.ball', borderRadius: "5px", height: '5px' }}>
+
+          </Box>
         </Typography>
 
         <Typography variant='subtitle1' component='div' sx={{
