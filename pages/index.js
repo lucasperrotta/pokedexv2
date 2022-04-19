@@ -1,8 +1,9 @@
 /* import * as React from 'react';
 import Typography from '@mui/material/Typography'; */
 import { BorderAllRounded } from '@mui/icons-material';
-import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
+import Image from 'next/image';
+import { Box, Typography, IconButton } from '@mui/material/';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 /* import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
@@ -12,22 +13,51 @@ import { boxSizing, height } from '@mui/system';
 const pikachu = {
   id: "001",
   name: 'Pikachu',
-  types: ['Electric'],
+  types: ['electric'],
 }
 const pokemons = [pikachu, pikachu, pikachu]
 
-const Search = () => (
-  <Box className='search' component='input' sx={{
-    height: "40px",
-    flexGrow: "1",
-    display: "flex",
-    maxWidth: "500px",
-    minWidth: "100px",
-    border: 'none',
-    borderRadius: '10px',
-    bgcolor: 'red.navsearchbg',
-    justifySelf: 'end',
-  }} >
+const Search = ({ icon }) => (
+  <Box sx={{
+    display: 'flex',
+  }}>
+    <Box placeholder="Search" className='search' component='input' sx={{
+      height: "40px",
+      flexGrow: "1",
+      display: "flex",
+      maxWidth: "500px",
+      minWidth: "100px",
+      pl: "1em",
+      border: 'none',
+      borderRadius: '10px 0 0 10px',
+      bgcolor: 'red.navsearchbg',
+      color: 'white.main',
+      justifySelf: 'end',
+      '::placeholder': {
+        color: 'white.main',
+        fontSize: '1.2rem',
+      },
+      ':focus': {
+        outline: 'none',
+        border: 'none',
+        bgcolor: 'red.navsearchbg',
+      }
+    }} />
+    <Box placeholder="Search" className='search' component='div' sx={{
+      height: "40px",
+      flexGrow: "1",
+      display: "flex",
+      pl: "1em",
+      border: 'none',
+      borderRadius: '0px 10px 10px 0px',
+      bgcolor: 'red.navsearchbg',
+      justifySelf: 'end',
+    }}>
+      <IconButton aria-label="search">
+        <SearchRoundedIcon color='white' />
+      </IconButton>
+    </Box>
+
   </Box>
 )
 const Ball = ({ color }) => (
@@ -65,7 +95,8 @@ const Header = ({ children }) => (
     width: 1,
     display: 'flex',
     alignItems: 'center',
-    p: 3,
+    px: ["3.0em", "6.0em", "9.0em"],
+    py: 3,
     justifyContent: 'space-between',
   }}>
     <Box sx={{ display: 'flex', flexGrow: 3, mr: 1 }}>
@@ -78,34 +109,64 @@ const Header = ({ children }) => (
     {children}
   </Box>
 )
-
+const TypeTag = ({ type, children }) => (
+  <Box sx={{
+    bgcolor: type + '.type',
+    boxShadow: "1px 1px 3px black",
+    borderRadius: "100px",
+  }}>
+    {children}
+  </Box >
+)
 const Pokebox = ({ pokemon }) => {
   const { id, name, types } = pokemon
   return (
     < Box sx={{
-      bgcolor: 'electric',
       width: 1,
-      maxHeight: '150px',
+      maxHeight: '120px',
+      backgroundColor: "electric.bg",
       flexGrow: 1,
       display: 'flex',
       p: 1,
       alignSelf: 'start',
-      borderRadius: "10px",
+      justifyContent: 'space-between',
+      borderRadius: "20px",
       flexFlow: 'row wrap',
-      my: 2
+      mt: "0.7em",
+      backgroundImage: "url('https://i.postimg.cc/GpRWYpTY/pokeball-watermark.png')",
+      backgroundSize: "auto 200%",
+      backgroundPosition: "center right",
+      backgroundRepeat: "no-repeat",
     }} >
       <Box component='span' sx={{
         height: 1,
         display: 'flex',
-        flexFlow: 'column wrap',
-        justifyContent: 'space-between',
-        flexGrow: 1,
-        alignSelf: 'start',
-        borderRadius: "10px",
+        flexFlow: 'column nowrap',
+        justifyContent: 'center',
       }}>
         <Typography variant="subtitle1">#{id} </Typography>
-        <Typography variant="h5" sx={{ fontSize: '1.4rem', fontFamily: 'Varela Round', fontWeight: "bold" }}>{name} <br /></Typography>
-        <Typography sx={{ fontSize: '0.9rem', }}>{types.map(type => type).join(', ')}<br /></Typography>
+        <Typography variant="h5" sx={{ fontSize: '1.5rem', fontFamily: 'Varela Round', fontWeight: "bold", color: 'white.main', textShadow: "2px 2px 3px black" }}>{name} <br /></Typography>
+        {types.map(type =>
+          <TypeTag type={type}>
+            <Typography variant="subtitle2" sx={{ fontSize: '0.9rem', display: 'flex', justifyContent: "center", alignItems: "center" }}>{type}</Typography>
+          </TypeTag>
+        )}
+
+      </Box>
+      <Box sx={{
+        height: "200%",
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        justifyContent: 'start',
+        position: 'relative',
+        top: '-100%',
+      }}>
+        <Image
+          src="/assets/pikachu.png"
+          quality={100}
+          width={200}
+          height={200}
+        />
       </Box>
     </Box >
   )
@@ -115,9 +176,11 @@ const Content = ({ children }) => (
     bgcolor: 'white',
     width: 1,
     flexGrow: 1,
-    p: [1, 2, 3],
+    px: ["3.0em", "6.0em", "9.0em"],
     display: 'flex',
-    flexFlow: 'column nowrap',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    py: 2,
   }}>
     {children}
   </Box>
@@ -126,7 +189,7 @@ const Footer = ({ children }) => (
   <Box sx={{
     bgcolor: 'red.footer',
     width: 1,
-    minHeight: '120px',
+    minHeight: '110px',
     display: 'flex',
   }}>
     a
@@ -154,12 +217,12 @@ const Index = () => (
       <Box sx={{
         display: 'flex',
         flexFlow: 'column nowrap',
-        width: "300px",
+        width: "250px",
         border: 'none',
         borderRadius: '10px',
         flexGrow: 1,
         maxHeight: "100px",
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         my: 1
       }}>
         <Typography variant='h3' component='div' sx={{
@@ -167,9 +230,10 @@ const Index = () => (
           fontSize: '2.5rem',
           fontWeight: 'bold',
           width: 'auto',
+          color: 'red.title'
         }}>
           Pokedex
-          <Box sx={{ width: 1, bgcolor: 'blue.ball', borderRadius: "5px", height: '5px' }}>
+          <Box sx={{ width: 1, bgcolor: 'red.title', borderRadius: "5px", height: '5px' }}>
 
           </Box>
         </Typography>
@@ -178,7 +242,7 @@ const Index = () => (
           fontFamily: 'Varela Round',
           fontSize: '1.0rem',
         }}>
-          Procure pelo Pokemon
+          Procure pelo pokemon
           desejado por nome ou id.
         </Typography>
       </Box>
@@ -186,6 +250,7 @@ const Index = () => (
         display: 'flex',
         flexFlow: 'column wrap',
         justifyContent: 'space-around',
+        alignItems: 'center',
         flexGrow: 1,
       }}>
         <Pokebox pokemon={pikachu} />

@@ -16,7 +16,7 @@ const theme = createTheme({
     normal: "#A8A77A",
     fire: "#EE8130",
     water: "#6390F0",
-    electric: "#F7D02C",
+    electric: { type: "#F7D02C", bg: "#F2CB54" },
     grass: "#7AC74C",
     ice: "#96D9D6",
     fighting: "#C22E28",
