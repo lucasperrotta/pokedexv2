@@ -4,6 +4,8 @@ import { BorderAllRounded } from '@mui/icons-material';
 import Image from 'next/image';
 import { Box, Typography, IconButton } from '@mui/material/';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import ArrowRightRoundedIcon from '@mui/icons-material/ArrowRightRounded';
+import ArrowLeftRoundedIcon from '@mui/icons-material/ArrowLeftRounded';
 /* import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
@@ -85,7 +87,18 @@ const BlueBall = () => (
     borderRadius: '50%',
     border: '3px solid white',
   }}>
-
+    <Box sx={{
+      bgcolor: "white.main",
+      minWidth: "1px",
+      minHeight: "1px",
+      maxWidth: "10px",
+      maxHeight: "10px",
+      height: "10px",
+      width: "10px",
+      borderRadius: '50%',
+      mt: 1,
+      mx: 1
+    }} />
   </Box>
 )
 
@@ -185,14 +198,60 @@ const Content = ({ children }) => (
     {children}
   </Box>
 )
+
+const Prev = () => (
+  <Box component='button' sx={{
+    bgcolor: 'white.button',
+    width: '70px',
+    height: '70px',
+    borderRadius: '100px'
+  }}>
+    <ArrowLeftRoundedIcon sx={{ fontSize: "4.0em" }} />
+  </Box>
+)
+const Next = () => (
+  <Box component='button' sx={{
+    bgcolor: 'white.button',
+    width: '70px',
+    height: '70px',
+    borderRadius: '100px'
+  }}>
+    <ArrowRightRoundedIcon sx={{ fontSize: "4.0em" }} />
+  </Box>
+)
+const Navigation = (prev, next, page) => (
+  <Box sx={{
+    bgcolor: 'red.main',
+    width: "300px",
+    height: "100px",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  }}>
+    <Prev />
+    <Box sx={{
+      bgcolor: 'white.main',
+      width: "100px",
+      height: "60px",
+      borderRadius: "20px",
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <Typography variant="subtitle" sx={{ fontSize: '1.5rem', fontFamily: 'Varela Round', fontWeight: "bold", color: 'black' }}>{page}1/500</Typography>
+    </Box>
+    <Next />
+  </Box>
+)
 const Footer = ({ children }) => (
   <Box sx={{
     bgcolor: 'red.footer',
     width: 1,
     minHeight: '110px',
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }}>
-    a
     {children}
   </Box>
 )
@@ -233,11 +292,8 @@ const Index = () => (
           color: 'red.title'
         }}>
           Pokedex
-          <Box sx={{ width: 1, bgcolor: 'red.title', borderRadius: "5px", height: '5px' }}>
-
-          </Box>
+          <Box sx={{ width: 1, bgcolor: 'red.title', borderRadius: "5px", height: '5px' }} />
         </Typography>
-
         <Typography variant='subtitle1' component='div' sx={{
           fontFamily: 'Varela Round',
           fontSize: '1.0rem',
@@ -260,7 +316,9 @@ const Index = () => (
 
     </Content>
 
-    <Footer />
+    <Footer>
+      <Navigation />
+    </Footer>
 
   </Screen >
 );

@@ -48,7 +48,7 @@ const theme = createTheme({
       main: "#FFFFFF",
       borderball: "#FBFCF2",
       searchicon: "#F8ECEC",
-      button: "#F5F7F6",
+      button: "#f5f7f6",
       navigation: "#F5F7F6",
     },
     blue: {
