@@ -15,7 +15,7 @@ import { boxSizing, height } from '@mui/system';
 const pikachu = {
   id: "001",
   name: 'Pikachu',
-  types: ['electric'],
+  types: ['electric', 'normal'],
 }
 const pokemons = [pikachu, pikachu, pikachu]
 
@@ -127,6 +127,9 @@ const TypeTag = ({ type, children }) => (
     bgcolor: type + '.type',
     boxShadow: "1px 1px 3px black",
     borderRadius: "100px",
+    width: "100px",
+    alignSelf: "center",
+    mx: 1,
   }}>
     {children}
   </Box >
@@ -136,96 +139,106 @@ const Pokebox = ({ pokemon }) => {
   return (
     < Box sx={{
       width: 1,
-      maxHeight: '120px',
-      backgroundColor: "electric.bg",
+      maxHeight: '450px',
+      minHeight: '300px',
+      backgroundColor: "white.main",
       flexGrow: 1,
+      justifyContent: 'center',
       display: 'flex',
       p: 1,
       alignSelf: 'start',
-      justifyContent: 'space-between',
       borderRadius: "20px",
       flexFlow: 'row wrap',
-      mt: "0.7em",
-      backgroundImage: "url('https://i.postimg.cc/GpRWYpTY/pokeball-watermark.png')",
-      backgroundSize: "auto 200%",
-      backgroundPosition: "center right",
-      backgroundRepeat: "no-repeat",
     }} >
-      <Box component='span' sx={{
-        height: 1,
-        display: 'flex',
-        flexFlow: 'column nowrap',
-        justifyContent: 'center',
-      }}>
-        <Typography variant="subtitle1">#{id} </Typography>
-        <Typography variant="h5" sx={{ fontSize: '1.5rem', fontFamily: 'Varela Round', fontWeight: "bold", color: 'white.main', textShadow: "2px 2px 3px black" }}>{name} <br /></Typography>
-        {types.map(type =>
-          <TypeTag type={type}>
-            <Typography variant="subtitle2" sx={{ fontSize: '0.9rem', display: 'flex', justifyContent: "center", alignItems: "center" }}>{type}</Typography>
-          </TypeTag>
-        )}
-
-      </Box>
       <Box sx={{
-        height: "200%",
         display: 'flex',
         flexFlow: 'column nowrap',
-        justifyContent: 'start',
+        justifyContent: 'top',
+        alignSelf: 'center',
         position: 'relative',
-        top: '-100%',
+        top: '-250px',
+        bgcolor: "green.ball",
       }}>
         <Image
           src="/assets/pikachu.png"
           quality={100}
-          width={200}
-          height={200}
+          width={300}
+          height={300}
         />
-      </Box>
+        <Box sx={{ display: "flex", flexFlow: "row nowrap", justifyContent: "center" }}>
+          {types.map(type => (
+            <TypeTag type="electric" >
+              <Typography variant="subtitle2" sx={{ fontSize: '0.9rem', display: 'flex', justifyContent: "center", alignItems: "center" }}>{type}</Typography>
+            </TypeTag>
+          ))}
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography variant="h6" sx={{ fontSize: '2.0rem', display: 'flex', justifyContent: "center", alignItems: "center", fontFamily: "Varela Round", fontWeight: "bold", color: types[0] + ".type" }}>Info</Typography>
+        </Box>
+      </Box >
+      <Box sx={{ mt: "-15%", bgcolor: "black", color: "white.main", width: 1 }}>asdasdasd</Box>
     </Box >
   )
 }
-const Content = ({ children }) => (
-  <Box sx={{
-    bgcolor: 'white',
-    width: 1,
-    flexGrow: 1,
-    px: ["3.0em", "6.0em", "9.0em"],
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    py: 2,
-  }}>
-    {children}
-  </Box>
-)
-const Back = () => (
-  <Box component='button' sx={{
-    bgcolor: 'white.button',
-    width: '70px',
-    height: '70px',
-    borderRadius: '100px'
-  }}>
-    <ArrowLeftRoundedIcon sx={{ fontSize: "4.0em" }} />
-  </Box>
-)
+const Content = ({ children, pokemon }) => {
+  const { id, name, types } = pokemon
+  return (
+    <Box sx={{
+      bgcolor: 'electric.bg',
+      width: 1,
+      flexGrow: 1,
+      px: ["3.0em", "6.0em", "9.0em"],
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'wrap',
+      py: 2,
+      backgroundImage: "url('https://i.postimg.cc/GpRWYpTY/pokeball-watermark.png')",
+      backgroundSize: "auto 60%",
+      backgroundPosition: "top right",
+      backgroundPositionY: "-20%",
+      backgroundRepeat: "no-repeat",
+      justifyContent: 'space-between',
+    }}>
+      <Box sx={{ width: 1, height: '200px', mb: 4 }}>
+        <Typography variant="subtitle1" sx={{ fontSize: '2.0rem', fontFamily: 'Varela Round', fontWeight: "bold", color: 'white.main', textShadow: "2px 2px 3px black" }}>#{id} </Typography>
+        <Typography variant="h5" sx={{ fontSize: '2.0rem', fontFamily: 'Varela Round', fontWeight: "bold", color: 'white.main', textShadow: "2px 2px 3px black" }}>{name} <br /></Typography>
+        {/* {types.map(type =>
+          <TypeTag type={type}>
+            <Typography variant="subtitle2" sx={{ fontSize: '0.9rem', display: 'flex', justifyContent: "center", alignItems: "center" }}>{type}</Typography>
+          </TypeTag>
+        )} */}
+      </Box>
+      {children}
+
+    </Box>
+  )
+}
+
+
 const Prev = () => (
   <Box component='button' sx={{
     bgcolor: 'white.button',
-    width: '70px',
-    height: '70px',
-    borderRadius: '100px'
+    width: '50px',
+    height: '50px',
+    borderRadius: '100px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }}>
-    <ArrowLeftRoundedIcon sx={{ fontSize: "4.0em" }} />
+    <ArrowLeftRoundedIcon sx={{ fontSize: "5.0em" }} />
   </Box>
 )
 const Next = () => (
   <Box component='button' sx={{
     bgcolor: 'white.button',
-    width: '70px',
-    height: '70px',
-    borderRadius: '100px'
+    width: '50px',
+    height: '50px',
+    borderRadius: '100px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }}>
-    <ArrowRightRoundedIcon sx={{ fontSize: "4.0em" }} />
+    <ArrowRightRoundedIcon sx={{ fontSize: "5.0em" }} />
   </Box>
 )
 const Navigation = (prev, next, page) => (
@@ -241,8 +254,8 @@ const Navigation = (prev, next, page) => (
     <Box sx={{
       bgcolor: 'white.main',
       width: "100px",
-      height: "60px",
-      borderRadius: "20px",
+      height: "50px",
+      borderRadius: "25px",
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -275,60 +288,15 @@ const Screen = ({ children }) => (
   </Box>
 );
 
-
-
 const Index = () => (
   <Screen>
     <Header />
-
-    <Content>
-      <Box sx={{
-        display: 'flex',
-        flexFlow: 'column nowrap',
-        width: "250px",
-        border: 'none',
-        borderRadius: '10px',
-        flexGrow: 1,
-        maxHeight: "100px",
-        justifyContent: 'space-around',
-        my: 1
-      }}>
-        <Typography variant='h3' component='div' sx={{
-          fontFamily: 'Varela Round',
-          fontSize: '2.5rem',
-          fontWeight: 'bold',
-          width: 'auto',
-          color: 'red.title'
-        }}>
-          Pokedex
-          <Box sx={{ width: 1, bgcolor: 'red.title', borderRadius: "5px", height: '5px' }} />
-        </Typography>
-        <Typography variant='subtitle1' component='div' sx={{
-          fontFamily: 'Varela Round',
-          fontSize: '1.0rem',
-        }}>
-          Procure pelo pokemon
-          desejado por nome ou id.
-        </Typography>
-      </Box>
-      <Box sx={{
-        display: 'flex',
-        flexFlow: 'column wrap',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        flexGrow: 1,
-      }}>
-        <Pokebox pokemon={pikachu} />
-        <Pokebox pokemon={pikachu} />
-        <Pokebox pokemon={pikachu} />
-      </Box>
-
+    <Content pokemon={pikachu}>
+      <Pokebox pokemon={pikachu} />
     </Content>
-
     <Footer>
-      <Back />
+      <Prev />
     </Footer>
-
   </Screen >
 );
 

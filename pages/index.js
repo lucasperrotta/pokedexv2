@@ -1,6 +1,3 @@
-/* import * as React from 'react';
-import Typography from '@mui/material/Typography'; */
-import { BorderAllRounded } from '@mui/icons-material';
 import Image from 'next/image';
 import { Box, Typography, IconButton } from '@mui/material/';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -9,7 +6,6 @@ import ArrowLeftRoundedIcon from '@mui/icons-material/ArrowLeftRounded';
 /* import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
-import { boxSizing, height } from '@mui/system';
  */
 
 const pikachu = {
@@ -202,21 +198,27 @@ const Content = ({ children }) => (
 const Prev = () => (
   <Box component='button' sx={{
     bgcolor: 'white.button',
-    width: '70px',
-    height: '70px',
-    borderRadius: '100px'
+    width: '50px',
+    height: '50px',
+    borderRadius: '100px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }}>
-    <ArrowLeftRoundedIcon sx={{ fontSize: "4.0em" }} />
+    <ArrowLeftRoundedIcon sx={{ fontSize: "5.0em" }} />
   </Box>
 )
 const Next = () => (
   <Box component='button' sx={{
     bgcolor: 'white.button',
-    width: '70px',
-    height: '70px',
-    borderRadius: '100px'
+    width: '50px',
+    height: '50px',
+    borderRadius: '100px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }}>
-    <ArrowRightRoundedIcon sx={{ fontSize: "4.0em" }} />
+    <ArrowRightRoundedIcon sx={{ fontSize: "5.0em" }} />
   </Box>
 )
 const Navigation = (prev, next, page) => (
@@ -232,8 +234,8 @@ const Navigation = (prev, next, page) => (
     <Box sx={{
       bgcolor: 'white.main',
       width: "100px",
-      height: "60px",
-      borderRadius: "20px",
+      height: "50px",
+      borderRadius: "25px",
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -265,8 +267,6 @@ const Screen = ({ children }) => (
     {children}
   </Box>
 );
-
-
 
 const Index = () => (
   <Screen>
