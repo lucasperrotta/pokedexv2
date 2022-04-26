@@ -10,9 +10,9 @@ const Types = ({ ...props }) => {
         height: "50px",
       }}
     >
-      <TypeTag type="electric" />
-      <TypeTag type="electric" />
-      <TypeTag type="poison" />
+      <TypeTag type="electric" sx={{mx:1}}/>
+      <TypeTag type="electric" sx={{mx:1}}/>
+      <TypeTag type="poison" sx={{mx:1}}/>
     </Box>
   );
 };
