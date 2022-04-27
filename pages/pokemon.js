@@ -1,7 +1,4 @@
-/* import * as React from 'react';
-import Typography from '@mui/material/Typography'; */
-import { BorderAllRounded } from "@mui/icons-material";
-import Image from "next/image";
+
 import { Box, Typography, IconButton } from "@mui/material/";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
@@ -12,20 +9,11 @@ import Stats from "../src/components/stats";
 import Abilities from "../src/components/abilities";
 import TypeTag from "../src/components/type-tag";
 import Title from "../src/components/title";
-/* import ProTip from '../src/ProTip';
-import Link from '../src/Link';
-import Copyright from '../src/Copyright';
-import { boxSizing, height } from '@mui/system';
- */
+import pokemons from '../src/utils/pokemons';
 
-const pikachu = {
-  id: "001",
-  name: "Pikachu",
-  types: ["electric", "normal"],
-};
-const pokemons = [pikachu, pikachu, pikachu];
+let pikachu = pokemons[0];
 
-const Search = ({ icon }) => (
+const Search = () => (
   <Box
     sx={{
       display: "flex",
