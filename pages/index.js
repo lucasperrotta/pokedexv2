@@ -1,4 +1,4 @@
-import Home from "../src/templates/Home";
+import Home from "../src/templates/pages/Home";
 import pokemons from "../src/utils/pokemons";
 
 const Index = () => (
